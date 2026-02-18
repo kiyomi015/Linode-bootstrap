@@ -1,0 +1,109 @@
+default_authorized_keys = [
+  "ssh-key XXXXXXXXXXXXXXXX",
+]
+
+linode_token = "YOUR_API_KEY"
+
+instances = {
+  "test" = {
+    label      = "Test"
+    region     = "eu-central"
+    type       = "g6-standard-2"
+    image      = "linode/arch"
+    tags       = ["test", "prod"]
+    private_ip = true
+  }
+}
+
+# Labels and tags:
+# - label: display name in Linode Manager; must be unique within your account.
+# - tags: optional labels you can attach to group/search resources.
+#
+# Common regions (subset; see /v4/regions for full list):
+# Europe:
+# - se-sto (Stockholm, SE)
+# - nl-ams (Amsterdam, NL)
+# - it-mil (Milan, IT)
+# - fr-par (Paris, FR)
+# - es-mad (Madrid, ES)
+# - eu-central (Frankfurt, DE)
+# - de-fra-2 (Frankfurt, DE Expansion)
+# - eu-west (London, UK) [limited capacity for new accounts]
+# - gb-lon (London, UK Expansion)
+# North America (examples):
+# - us-east (Newark, NJ)
+# - us-central (Dallas, TX)
+# - us-west (Fremont, CA)
+# - us-ord (Chicago, IL)
+# - us-sea (Seattle, WA)
+# - us-lax (Los Angeles, CA)
+# - us-mia (Miami, FL)
+# - us-southeast (Atlanta, GA)
+# - ca-central (Toronto, CA)
+#
+# Common types (examples; see /v4/linode/types for full list):
+# Shared (vCPU / RAM / SSD):
+# - g6-nanode-1    (1 / 1GB / 25GB)
+# - g6-standard-1  (1 / 2GB / 50GB)
+# - g6-standard-2  (2 / 4GB / 80GB)
+# - g6-standard-4  (4 / 8GB / 160GB)
+# - g6-standard-6  (6 / 16GB / 320GB)
+# - g6-standard-8  (8 / 32GB / 640GB)
+# - g6-standard-16 (16 / 64GB / 1280GB)
+# - g6-standard-20 (20 / 96GB / 1920GB)
+# - g6-standard-24 (24 / 128GB / 2560GB)
+# - g6-standard-32 (32 / 192GB / 3840GB)
+# Dedicated (vCPU / RAM / SSD):
+# - g6-dedicated-2  (2 / 4GB / 80GB)
+# - g6-dedicated-4  (4 / 8GB / 160GB)
+# - g6-dedicated-8  (8 / 16GB / 320GB)
+# - g6-dedicated-16 (16 / 32GB / 640GB)
+# - g6-dedicated-32 (32 / 64GB / 1280GB)
+# - g6-dedicated-48 (48 / 96GB / 1920GB)
+# - g6-dedicated-50 (50 / 128GB / 2500GB)
+# - g6-dedicated-56 (56 / 256GB / 5000GB)
+# - g6-dedicated-64 (64 / 512GB / 7200GB)
+# High memory (vCPU / RAM / SSD):
+# - g7-highmem-1   (2 / 24GB / 20GB)
+# - g7-highmem-2   (2 / 48GB / 40GB)
+# - g7-highmem-4   (4 / 90GB / 90GB)
+# - g7-highmem-8   (8 / 150GB / 200GB)
+# - g7-highmem-16  (16 / 300GB / 340GB)
+# Note: Specs are plan-level defaults from pricing; verify with
+# `GET /v4/linode/types/{id}` or `linode-cli linodes type-view <id>`
+# because offerings can change by time/region.
+#
+# Common images (examples; see /v4/images for full list):
+# - linode/ubuntu22.04
+# - linode/ubuntu20.04
+# - linode/ubuntu18.04
+# - linode/debian11
+# - linode/debian10
+# - linode/almalinux9
+# - linode/almalinux8
+# - linode/rocky9
+# - linode/rocky8
+# - linode/centos-stream9
+# - linode/centos-stream8
+# - linode/fedora37
+# - linode/fedora36
+# - linode/fedora35
+# - linode/alpine3.17
+# - linode/alpine3.16
+# - linode/alpine3.15
+# - linode/arch
+# - linode/opensuse15.4
+# - linode/opensuse15.3
+# - linode/kali
+# - linode/gentoo
+
+# If you do not provide authorized_keys above, set root_pass per instance:
+# instances = {
+#   "web-1" = {
+#     label      = "web-1"
+#     region     = "us-east"
+#     type       = "g6-nanode-1"
+#     image      = "linode/ubuntu22.04"
+#     root_pass  = "a-strong-password"
+#   }
+# }
