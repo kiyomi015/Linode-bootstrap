@@ -9,11 +9,16 @@ instances = {
     label      = "Test"
     region     = "eu-central"
     type       = "g6-standard-2"
-    image      = "linode/arch"
+    image      = "linode/debian13"
+    enabled    = true
     tags       = ["test", "prod"]
     private_ip = true
+
   }
 }
+
+# To destroy a managed instance, set enabled = false for that map item
+# and run: tofu apply
 
 # Labels and tags:
 # - label: display name in Linode Manager; must be unique within your account.
@@ -74,26 +79,27 @@ instances = {
 # because offerings can change by time/region.
 #
 # Common images (examples; see /v4/images for full list):
+# - linode/ubuntu25.10
+# - linode/ubuntu24.04
 # - linode/ubuntu22.04
-# - linode/ubuntu20.04
-# - linode/ubuntu18.04
+# - linode/debian13
+# - linode/debian12
 # - linode/debian11
 # - linode/debian10
+# - linode/almalinux10
 # - linode/almalinux9
 # - linode/almalinux8
+# - linode/rocky10
 # - linode/rocky9
 # - linode/rocky8
+# - linode/centos-stream10
 # - linode/centos-stream9
-# - linode/centos-stream8
-# - linode/fedora37
-# - linode/fedora36
-# - linode/fedora35
-# - linode/alpine3.17
-# - linode/alpine3.16
-# - linode/alpine3.15
+# - linode/fedora43
+# - linode/fedora42
+# - linode/alpine3.22
+# - linode/alpine3.21
+# - linode/alpine3.20
 # - linode/arch
-# - linode/opensuse15.4
-# - linode/opensuse15.3
 # - linode/kali
 # - linode/gentoo
 

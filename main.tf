@@ -1,5 +1,11 @@
+locals {
+  active_instances = {
+    for key, instance in var.instances : key => instance if try(instance.enabled, true)
+  }
+}
+
 resource "linode_instance" "this" {
-  for_each = var.instances
+  for_each = local.active_instances
 
   label  = each.value.label
   region = each.value.region
