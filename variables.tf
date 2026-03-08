@@ -11,12 +11,6 @@ variable "default_authorized_keys" {
   description = "SSH public keys added to all instances."
 }
 
-variable "provisioning_ssh_private_key_path" {
-  type        = string
-  default     = "~/.ssh/id_ed25519"
-  description = "Deprecated: retained for compatibility; post-provisioning remote-exec is no longer used."
-}
-
 variable "instances" {
   type = map(object({
     label           = string

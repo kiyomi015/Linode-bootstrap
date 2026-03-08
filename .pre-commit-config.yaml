@@ -1,0 +1,58 @@
+repos:
+
+  # ─── File hygiene ────────────────────────────────────────────────────────────
+  # Basic sanity checks that apply to every file in the repo.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+        name: Git | Check for unresolved merge conflict markers
+
+      - id: check-added-large-files
+        name: Format | Check for accidentally staged large files
+
+      - id: end-of-file-fixer
+        name: Format | Ensure all files end with a newline
+
+      - id: trailing-whitespace
+        name: Format | Remove trailing whitespace
+
+      - id: mixed-line-ending
+        name: Format | Normalize line endings to LF
+        args: [--fix=lf]
+
+  # ─── Secret detection ────────────────────────────────────────────────────────
+  # Scans every commit for accidentally included secrets, tokens, or credentials.
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks
+        name: GitLeaks | Scan for secrets and credentials
+
+  # ─── OpenTofu ────────────────────────────────────────────────────────────────
+  # Formatting, validation, and linting for all .tf files.
+  # Requires: tofu, tflint
+  - repo: local
+    hooks:
+      - id: tofu-fmt
+        name: Tofu | Format HCL files (tofu fmt)
+        language: system
+        entry: tofu fmt -recursive -check
+        files: \.tf$
+        pass_filenames: false
+
+      - id: tofu-validate
+        name: Tofu | Validate configuration (tofu validate)
+        language: system
+        entry: tofu validate
+        # Requires `tofu init` to have been run first (providers must be cached).
+        files: \.tf$
+        pass_filenames: false
+
+      - id: tflint
+        name: Tofu | Lint with tflint
+        language: system
+        entry: tflint --recursive
+        # Requires tflint: https://github.com/terraform-linters/tflint
+        files: \.tf$
+        pass_filenames: false
