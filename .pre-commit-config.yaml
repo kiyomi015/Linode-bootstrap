@@ -37,7 +37,7 @@ repos:
       - id: tofu-fmt
         name: Tofu | Format HCL files (tofu fmt)
         language: system
-        entry: tofu fmt -recursive -check
+        entry: tofu fmt -recursive -check -diff
         files: \.tf$
         pass_filenames: false
 

@@ -14,6 +14,14 @@ instances = {
     tags       = ["test", "prod"]
     private_ip = true
 
+    # Optional: create a non-root user via cloud-init at first boot.
+    # Generate password_hash with: mkpasswd --method=SHA-512
+    user = {
+      name          = "alice"
+      password_hash = "$6$rounds=4096$examplesalt$hashedpassword..."
+      ssh_key       = "ssh-ed25519 XXXXXXXXXXXXXXXX"
+      sudo          = true
+    }
   }
 }
 
